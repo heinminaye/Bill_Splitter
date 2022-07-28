@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/services.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
 void main() {
@@ -81,6 +82,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       width: 200,
                       child: TextField(
                         controller: textController,
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
                         style: const TextStyle(color: Colors.black),
                         decoration: InputDecoration(
                           errorText: showErr ? error : null,
@@ -137,7 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           .map((String items) => DropdownMenuItem(
                                 value: items,
                                 child: Text(
-                                  items,
+                                  "%   " + items,
                                   style: const TextStyle(
                                       fontSize: 18, color: Colors.black),
                                 ),
@@ -148,14 +153,13 @@ class _MyHomePageState extends State<MyHomePage> {
                           dropVal = newVal as String;
                         });
                       },
-                      iconEnabledColor: Colors.black,
                       buttonDecoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: Colors.black12,
                       ),
                       buttonHeight: 50,
                       buttonWidth: 160,
-                      buttonPadding: const EdgeInsets.only(left: 14, right: 14),
+                      buttonPadding: const EdgeInsets.only(left: 20, right: 14),
                       itemHeight: 40,
                     )
                   ],
